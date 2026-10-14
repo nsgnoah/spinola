@@ -1,6 +1,8 @@
 # Submitting Spinola to the App Store
 
-Status as of September 20, 2026. The code side is ready; what remains is App Store Connect setup, a real-device Game Center test, and the upload.
+**Status, October 14, 2026: version 1.1 (build 5) is live**, released September 28, 2026. The submission history is under [App Store Connect](#app-store-connect). The one item from the original checklist still open is a Game Center match between two real devices.
+
+The checklist below was written on September 20 for the first submission and is kept as the record of what each requirement maps to.
 
 ## What the build already satisfies
 
@@ -14,7 +16,7 @@ Status as of September 20, 2026. The code side is ready; what remains is App Sto
 | Export compliance | `ITSAppUsesNonExemptEncryption = false` in `Info.plist` |
 | 1024×1024 icon, no alpha, not blank | `icon.png`, rendered and guarded by `OlaBallTests/AppIconTests.swift` |
 | Launch screen; portrait on iPhone, all orientations on iPad; universal (device family 1,2) | `project.yml` |
-| Version 1.0, build 1 | `project.yml` (`MARKETING_VERSION`, `CURRENT_PROJECT_VERSION`; bump the build for every upload) |
+| Version 1.1, build 5 (current) | `project.yml` (`MARKETING_VERSION`, `CURRENT_PROJECT_VERSION`; bump the build for every upload) |
 | Dynamic Type up to xxLarge, Reduce Motion, 44pt targets | `Views/Theme.swift`, `Views/HUD.swift` |
 | Privacy policy and support reachable in the app (5.1.1(i), 1.5) | `Views/AboutView.swift`, home menu > "Privacy & support" |
 | iPad layout that is not a stretched phone app | `Viewport`/`UI.scale`, `Stage`/`StageScroll` (see below) |

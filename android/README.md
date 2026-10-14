@@ -60,7 +60,7 @@ AVD, run it and pull the shots.
 ## Shared content and golden fixtures
 
 `../content/README.md` is the full explanation. In short: the iOS test suite
-(`OlaBallTests/CrossPlatformExportTests.swift`) writes `content/assets/decks.json` (18 decks x 36
+(`OlaBallTests/CrossPlatformExportTests.swift`) writes `content/assets/decks.json` (18 decks x 120
 questions) and `content/golden/*.json` (random streams, hashes, question draws, points, a whole
 `MatchState` exactly as Swift's `JSONEncoder` encodes it, and the facts Kotlin must derive from
 it). The `core` tests replay every fixture, so a rule change on one platform fails the other's

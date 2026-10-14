@@ -1,13 +1,19 @@
 # Spinola — Status / Handoff
 
-_Updated: 2026-09-25_
+_Updated: 2026-10-14_
+
+## Where things stand
+- **iOS:** 1.1 (build 5) live on the App Store since September 28, 2026. Record: `docs/APP-STORE.md`.
+- **Android:** 1.0 (versionCode 1) live on Google Play since October 2, 2026. Record: `docs/PLAY-STORE.md`.
+- **Android is a release behind.** The Play build was made on September 25, before every deck grew to 120 questions and before the per-phone question history (both September 27). Both are already in `android/`; shipping them means bumping `versionCode` and `versionName` in `android/app/build.gradle.kts` and uploading a new bundle. The Play listing copy (`android/play/listing/en-US/full_description.txt`) still says 648 questions and should change with it.
+- **Still unverified:** a full Game Center match between two real devices.
 
 ## What this is now
 A couples trivia game: His World vs Her World. Each player declares the world they know; the challenger picks the deck their partner is quizzed on each round; five rounds, escalating difficulty, first to three crowns. Async over Game Center turn-based matches, or pass-and-play on one phone. Pivoted from the 3D football game on 2026-09-19 (that build is tagged `v1-football-draw-the-play`).
 
 ## Done
 - **Couples mode**: your couple vs another couple. Each member has a lane (the world they answer, default their own); the other couple picks a deck per member; team scores add up. One phone per couple over Game Center (the challenged phone sets up its two people before joining) or four people on one phone. Unit-tested and UI-tested end to end.
-- Content: 18 decks (9 per world), 648 questions, 3 tiers each, with a unit test that checks structure and uniqueness. Each deck lasts about 12 matches before questions repeat within it.
+- Content: 18 decks (9 per world), 120 questions each (40 per tier), 2,160 in all, with a unit test that checks structure and uniqueness. (648 until September 27, when every deck grew from 36 to 120.) Each phone remembers the questions it has shown and draws unseen ones first, so repeats only start once a tier is used up.
 - Engine: deterministic question draw from the match seed, time/streak scoring, tier escalation, crown logic, JSON match state.
 - Pass-and-play end to end; Game Center service and transport (sign-in, match list, matchmaker, turn events, submit, rematch).
 - Screens: profile setup, home with both match lists, deck pick, question play with timer, round reveal, match over, hand-off.
@@ -81,7 +87,7 @@ The `MatchTransport` seam is kept for an online transport later.
   a release build through R8 with the upload key, tablets beyond the layout code.
 - Submission checklist: `docs/PLAY-STORE.md`. Build notes: `android/README.md`.
 
-## Google Play (Sep 25)
+## Google Play (Sep 25; live October 2)
 - Privacy and support pages published with the Android wording (nsgnoah/ola, commit c2996c7).
 - Upload key created (`android/spinola-upload.jks`, RSA 4096, valid to 2054; passwords in the
   gitignored `android/keystore.properties`); release bundle signed with it.
@@ -93,10 +99,11 @@ The `MatchTransport` seam is kept for an online transport later.
 - **1.0 (1) sent for production review on September 25, 2026**, with no closed test (organization
   accounts are exempt): 176 countries (all but Morocco), rated ESRB Teen / PEGI 12. Managed
   publishing is off, so it goes live when approved. Details: `docs/PLAY-STORE.md`.
-- Not yet done: installing from Play on a real Android phone.
+- **Live on October 2, 2026.** Not yet done: installing from Play on a real Android phone.
 
 ## Next
-1. Play a Game Center match between two devices; fix whatever the first real turn reveals.
-2. Turn notifications copy (Game Center's default push text is generic).
-3. More decks per world (music, travel, cooking, fitness) and a "wildcard" deck both sides can pick.
-4. Stats: lifetime record vs partner, favorite deck, hardest question.
+1. Ship Android 1.1 to Play with the 120-question decks and question history (see the top of this file).
+2. Play a Game Center match between two devices; fix whatever the first real turn reveals.
+3. Turn notifications copy (Game Center's default push text is generic).
+4. More decks per world (music, travel, cooking, fitness) and a "wildcard" deck both sides can pick.
+5. Stats: lifetime record vs partner, favorite deck, hardest question.
