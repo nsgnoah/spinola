@@ -43,7 +43,7 @@ The sections below are the record of how it was set up, and the checklist for la
 | Privacy policy and support reachable in the app | `ui/screens/AboutScreen.kt`, home menu > "Privacy & support" |
 | Backup rules limited to the app's own preferences | `res/xml/backup_rules.xml`, `data_extraction_rules.xml` |
 | Rules, scoring, question draw and match JSON identical to iOS | `android/core` tests replay `content/golden/*.json` written by the iOS tests |
-| Version 1.0, versionCode 1 | `android/app/build.gradle.kts` (bump `versionCode` for every upload) |
+| Version 1.1, versionCode 2 (1.0, versionCode 1 is what is live) | `android/app/build.gradle.kts` (bump `versionCode` for every upload) |
 
 What is **not** in the Android build: online play. Game Center is Apple-only, and Google shut down
 Play Games' turn-based multiplayer in 2020, so the honest Android 1.0 is pass-and-play on one phone
@@ -145,7 +145,7 @@ with a new key's PEM certificate), and the app signing key Google holds does not
 |---|---|
 | App name (30 max) | `android/play/listing/en-US/title.txt`: Spinola: Couples Trivia |
 | Short description (80 max) | `short_description.txt`: His World vs Her World. Pick your partner's questions. First to three crowns. |
-| Full description (4000 max) | `full_description.txt` (1,579 characters: how it plays, both modes, 648 questions, nothing to sign up for). No ranking words, prices or calls to action, which the metadata policy discourages |
+| Full description (4000 max) | `full_description.txt` (1,738 characters: how it plays, both modes, 2,160 questions and the per-phone question history, nothing to sign up for; it said 648 questions until 1.1). No ranking words, prices or calls to action, which the metadata policy discourages |
 | Category | Game > Trivia |
 | Tags | Trivia, Couples, Party |
 | Contact email | noah@nsgsolutions.co |
@@ -183,7 +183,8 @@ help pages on September 25, 2026.
 ## Release checklist
 
 1. Bump `versionCode` (and `versionName` when the marketing version changes) in
-   `android/app/build.gradle.kts`.
+   `android/app/build.gradle.kts`, and write the release notes as
+   `android/play/listing/en-US/changelogs/<versionCode>.txt` (500 characters max).
 2. `./gradlew :core:test :app:testDebugUnitTest` green.
 3. Smoke-test the shrunk build before uploading it. R8 minifies release builds, and the only place
    that exercises the kept serializers is a real run. The release APK is signed with the upload key
