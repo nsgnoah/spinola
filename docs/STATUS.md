@@ -5,7 +5,7 @@ _Updated: 2026-10-14_
 ## Where things stand
 - **iOS:** 1.1 (build 5) live on the App Store since September 28, 2026. Record: `docs/APP-STORE.md`.
 - **Android:** 1.0 (versionCode 1) live on Google Play since October 2, 2026. Record: `docs/PLAY-STORE.md`.
-- **Android is a release behind.** The Play build was made on September 25, before every deck grew to 120 questions and before the per-phone question history (both September 27). Both are already in `android/`; shipping them means bumping `versionCode` and `versionName` in `android/app/build.gradle.kts` and uploading a new bundle. The Play listing copy (`android/play/listing/en-US/full_description.txt`) still says 648 questions and should change with it.
+- **Android is a release behind.** The Play build was made on September 25, before every deck grew to 120 questions and before the per-phone question history (both September 27). Both are already in `android/`. 1.1 is prepared but not uploaded: `versionCode` 2 / `versionName` 1.1 in `android/app/build.gradle.kts`, release notes in `android/play/listing/en-US/changelogs/2.txt` (the iOS 1.1 What's New), and the full description now says 2,160 questions. What's left is the release checklist in `docs/PLAY-STORE.md`: tests, a smoke test of the shrunk build, `bundleRelease`, upload, and pasting the new full description into the listing.
 - **Still unverified:** a full Game Center match between two real devices.
 
 ## What this is now
